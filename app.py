@@ -50,15 +50,29 @@ st.markdown("""
 st.markdown('<div class="main-container">', unsafe_allow_html=True)
 st.title("📊 Walmart Sales Insights")
 
-# --- Summary ---
+# --- Custom Intro ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("📝 Summary")
 st.markdown("""
-<p class="section-description">
-This interactive dashboard provides insights into Walmart’s weekly sales data.  
-Explore trends related to holidays, fuel prices, and store performance.  
-Built with Python (Streamlit + Pandas) • Visuals by Tableau • Code + Notebook included.
-</p>
+### ✨ Welcome to the Walmart Sales Insights Dashboard
+
+This interactive dashboard explores over two years of historical sales data across 45+ Walmart stores in the U.S.  
+It’s designed to simulate how data analytics can uncover meaningful retail patterns including:
+
+- 📆 How **holidays** impact weekly revenue  
+- ⛽ The relationship between **fuel prices and sales**  
+- 🏆 Identifying **top performing stores**  
+- 📉 Spotting drops in store activity  
+
+Whether you’re a data analyst, hiring manager, or just curious, this project demonstrates how raw sales data can be transformed into actionable insights using tools like **Python (Streamlit & Pandas)** and **Tableau**.
+
+---
+
+### Here's how to use this dashboard:
+
+- Use the **store selector** to explore performance metrics per store  
+- Review key **business KPIs** for overall sales and fuel impact  
+- Scroll through the embedded **Tableau charts** for visual comparisons  
+- Download the cleaned CSV or notebook below to dive deeper
 """, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -91,7 +105,6 @@ st.subheader("🔍 Explore Store Performance")
 selected_store = st.selectbox("Select a store", sorted(df['Store'].unique()))
 store_data = df[df['Store'] == selected_store]
 
-# KPIs
 col1, col2, col3 = st.columns(3)
 col1.metric("Avg Weekly Sales", f"${store_data['Weekly_Sales'].mean():,.0f}")
 col2.metric("Max Weekly Sales", f"${store_data['Weekly_Sales'].max():,.0f}")
@@ -149,7 +162,6 @@ Scroll through the notebook directly below (desktop only).
 </p>
 """, unsafe_allow_html=True)
 
-# Responsive iframe and mobile fallback
 st.markdown('<div class="desktop-preview">', unsafe_allow_html=True)
 st.markdown("""
 <div style="border: 1px solid #ccc; height: 600px; overflow-y: scroll;">
@@ -182,13 +194,18 @@ The Jupyter notebook provides a walkthrough of the analysis process:
 """, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-# --- Footer ---
+
+
+# --- Bottom Spacer for breathing room ---
+st.markdown('<div style="height: 100px;"></div>', unsafe_allow_html=True)
+st.markdown("""
+📌 Want to learn more about how this project was built?  
+👉 Visit [my portfolio](https://hectortrillo.vercel.app) or check out [the GitHub repo](https://github.com/htrillo95/walmart_sales_dashboard)
+""")
+            
+            # --- Footer ---
 st.markdown("---")
 st.markdown(
     "<div style='text-align:center; font-style:italic;'>Dashboard created with Streamlit • Data analysis by <span style='white-space:nowrap;'>Hector T</span></div>",
     unsafe_allow_html=True
 )
-st.markdown("""
-📌 Want to learn more about how this project was built?  
-👉 Visit [my portfolio](https://hectortrillo.vercel.app) or check out [the GitHub repo](https://github.com/htrillo95/walmart_sales_dashboard)
-""")
