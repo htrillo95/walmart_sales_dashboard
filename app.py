@@ -7,7 +7,7 @@ df = pd.read_csv("data/walmart_sales_cleaned.csv")
 df["Date"] = pd.to_datetime(df["Date"])
 
 # --- Config ---
-st.set_page_config(page_title="Walmart Sales Insights", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Walmart Sales Insights", page_icon=None, layout="wide")
 
 # --- Styles ---
 st.markdown("""
@@ -48,20 +48,20 @@ st.markdown("""
 
 # --- Header ---
 st.markdown('<div class="main-container">', unsafe_allow_html=True)
-st.title("📊 Walmart Sales Insights")
+st.title("Walmart Sales Insights")
 
 # --- Custom Intro ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.markdown("""
-### ✨ Welcome to the Walmart Sales Insights Dashboard
+### Welcome to the Walmart Sales Insights Dashboard
 
 This interactive dashboard explores over two years of historical sales data across 45+ Walmart stores in the U.S.  
 It’s designed to simulate how data analytics can uncover meaningful retail patterns including:
 
-- 📆 How **holidays** impact weekly revenue  
-- ⛽ The relationship between **fuel prices and sales**  
-- 🏆 Identifying **top performing stores**  
-- 📉 Spotting drops in store activity  
+- How **holidays** impact weekly revenue  
+- The relationship between **fuel prices and sales**  
+- Identifying **top performing stores**  
+- Spotting drops in store activity  
 
 Whether you’re a data analyst, hiring manager, or just curious, this project demonstrates how raw sales data can be transformed into actionable insights using tools like **Python (Streamlit & Pandas)** and **Tableau**.
 
@@ -89,7 +89,7 @@ elif fuel_correlation > 0.1:
     correlation_label = "Positive"
 
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("📌 Key Metrics")
+st.subheader("Key Metrics")
 col1, col2, col3 = st.columns(3)
 col1.metric("Avg Weekly Sales", f"${average_sales:,.0f}")
 col2.metric("Top Store", f"Store {top_store}", f"${top_store_sales:,.0f}")
@@ -101,7 +101,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # --- Store Selector ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("🔍 Explore Store Performance")
+st.subheader("Explore Store Performance")
 selected_store = st.selectbox("Select a store", sorted(df['Store'].unique()))
 store_data = df[df['Store'] == selected_store]
 
@@ -110,51 +110,51 @@ col1.metric("Avg Weekly Sales", f"${store_data['Weekly_Sales'].mean():,.0f}")
 col2.metric("Max Weekly Sales", f"${store_data['Weekly_Sales'].max():,.0f}")
 col3.metric("Min Weekly Sales", f"${store_data['Weekly_Sales'].min():,.0f}")
 
-st.markdown("### 📈 Weekly Sales Trend")
+st.markdown("### Weekly Sales Trend")
 st.line_chart(store_data[["Date", "Weekly_Sales"]].set_index("Date"))
 st.markdown('</div>', unsafe_allow_html=True)
 
 # --- Charts ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("🎄 Holiday vs Non-Holiday Sales Performance")
+st.subheader("Holiday vs Non-Holiday Sales Performance")
 st.markdown('<p class="section-description">Compare sales performance during holiday and non-holiday periods to understand seasonal trends and promotional effectiveness.</p>', unsafe_allow_html=True)
 st.image("images/holiday_vs_nonholiday_sales.png", use_container_width=True, caption="Created in Tableau")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("⛽ Weekly Sales vs Fuel Price Correlation")
+st.subheader("Weekly Sales vs Fuel Price Correlation")
 st.markdown('<p class="section-description">Analyze how fuel prices may impact weekly sales patterns across stores.</p>', unsafe_allow_html=True)
 st.image("images/weekly_sales_vs_fuel_price.png", use_container_width=True, caption="Created in Tableau")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("🏆 Top 10 Stores by Avg Weekly Sales")
+st.subheader("Top 10 Stores by Avg Weekly Sales")
 st.markdown('<p class="section-description">Visualize top performing stores ranked by average weekly revenue.</p>', unsafe_allow_html=True)
 st.image("images/top10_avg_weekly_sales_by_store.png", use_container_width=True, caption="Created in Tableau")
 st.markdown('</div>', unsafe_allow_html=True)
 
 # --- Downloads ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("📂 Download Data & Notebook")
+st.subheader("Download Data & Notebook")
 st.markdown('<p class="section-description">Access the full cleaned dataset and analysis notebook below. You can also preview them before downloading.</p>', unsafe_allow_html=True)
 
 with open("data/walmart_sales_cleaned.csv", "rb") as file:
-    st.download_button("📉 Download Cleaned CSV", file, "walmart_sales_cleaned.csv", "text/csv")
+    st.download_button("Download Cleaned CSV", file, "walmart_sales_cleaned.csv", "text/csv")
 
 with open("notebook/Walmart_Sales_Insights.ipynb", "rb") as file:
-    st.download_button("📔 Download Jupyter Notebook", file, "Walmart_Sales_Insights.ipynb", "application/octet-stream")
+    st.download_button("Download Jupyter Notebook", file, "Walmart_Sales_Insights.ipynb", "application/octet-stream")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 # --- CSV Preview ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("👁️ Preview: Cleaned Dataset (First 50 Rows)")
+st.subheader("Preview: Cleaned Dataset (First 50 Rows)")
 st.dataframe(df.head(50))
 st.markdown('</div>', unsafe_allow_html=True)
 
 # --- 📖 Scrollable Notebook Preview ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("📖 Notebook Preview")
+st.subheader("Notebook Preview")
 st.markdown("""
 <p class="section-description">
 Scroll through the notebook directly below (desktop only).  
@@ -178,18 +178,18 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # --- Notebook Highlights ---
 st.markdown('<div class="card">', unsafe_allow_html=True)
-st.subheader("🧪 Notebook Highlights")
+st.subheader("Notebook Highlights")
 st.markdown("""
 <p class="section-description">
 The Jupyter notebook provides a walkthrough of the analysis process:
 </p>
 <ul class="section-description">
-    <li>📂 Load and inspect raw data</li>
-    <li>🧼 Clean nulls, fix datatypes</li>
-    <li>📊 Analyze sales trends across time and stores</li>
-    <li>🎄 Compare holiday vs non-holiday sales</li>
-    <li>⛽ Explore fuel price correlation</li>
-    <li>🏆 Rank stores by average weekly performance</li>
+    <li>Load and inspect raw data</li>
+    <li>Clean nulls, fix datatypes</li>
+    <li>Analyze sales trends across time and stores</li>
+    <li>Compare holiday vs non-holiday sales</li>
+    <li>Explore fuel price correlation</li>
+    <li>Rank stores by average weekly performance</li>
 </ul>
 """, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
@@ -199,8 +199,8 @@ st.markdown('</div>', unsafe_allow_html=True)
 # --- Bottom Spacer for breathing room ---
 st.markdown('<div style="height: 100px;"></div>', unsafe_allow_html=True)
 st.markdown("""
-📌 Want to learn more about how this project was built?  
-👉 Visit [my portfolio](https://hectortrillo.vercel.app) or check out [the GitHub repo](https://github.com/htrillo95/walmart_sales_dashboard)
+Want to learn more about how this project was built?  
+Visit [my portfolio](https://hectortrillo.vercel.app) or check out [the GitHub repo](https://github.com/htrillo95/walmart_sales_dashboard)
 """)
             
             # --- Footer ---
